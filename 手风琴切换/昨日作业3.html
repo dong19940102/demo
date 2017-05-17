@@ -34,21 +34,40 @@ $(function(){
 	 var box=$(".box")
 	var w=box.width()/4;
 	var h=box.height();
-	 for(var i=0;i<4;i++){
-	 	var slide=$("<div class='slide'></div>");
-	 	for(var j=0;j<4;j++){
-	 		$("<div class='item'></div>")
-	 		.width(w)
-	 		.height(h)
-	 		.css({
-	 			"background-image":"url(img/"+i+".jpg)",
-	 			"background-position":-w*j+"px 0px",
-	 			"left":w*j+"px"
-	 		})
-	 		.appendTo(slide)
-	 	}
-	 	slide.appendTo(box)
-	 }
+	//封装初始化函数 插入进盒子中
+	function init(){
+		for(var i=0;i<4;i++){
+		 	var slide=$("<div class='slide'></div>");
+		 	for(var j=0;j<4;j++){
+		 		$("<div class='item'></div>")
+		 		.width(w)
+		 		.height(h)
+		 		.css({
+		 			"background-image":"url(img/"+i+".jpg)",
+		 			"background-position":-w*j+"px 0px",
+		 			"right":w*(3-j)+"px"
+		 		})
+		 		.appendTo(slide)
+		 	}
+		 	slide.appendTo(box)
+		};	
+	}
+	 init()
+	//默认显示第一张图
+	function set(index){
+		$(".slide").hide();
+		$(".slide").eq(index).show()
+	}
+	set(0);
+	
+	// 点击事件   删除所有按钮样式   切换按钮 增加类名加样式 
+	$(".nav li").click(function(){
+		$(".nav li").removeClass("ac")
+		$(this).addClass("ac")
+		var index=$(this).index()
+		$(".slide").find(".item").animate({"width":0},1000)
+	})
+	
 	
 
 });
