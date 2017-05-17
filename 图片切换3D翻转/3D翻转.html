@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{ margin: 0; padding: 0;}
+			body{
+				background-color: #000;
+			}
+			.box{
+				height: 400px;
+				width: 600px;
+				border: 1px solid coral;
+				transform-style: preserve-3d;
+				perspective: 1500px;	
+				
+				z-index: 1;
+					
+			}
+			.center{
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			.item{
+				height: 400px;
+				width: 600px;
+				position: absolute;
+				z-index: 2;	
+				transition: all 2s;
+				transform-origin: center bottom ; 	
+			}
+			button{
+				position: absolute;
+				bottom: -36px;
+				left: 0;
+				
+			}
+			.next{
+				margin-left: 50px;
+			}
+		</style>
+		<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var num=4;
+				var box=$(".box")
+				var w=box.width()
+				var h=box.height();
+				var statr=true;
+				box.css({"transform":"rotateX(-30deg)"})
+				for(var i=0;i<num;i++){
+					var z=i*(-50)
+					$("<div class='item'></div>")
+					.width(w)
+					.height(h)
+					.css({
+						"background-image":"url(images/"+i+".jpg)",
+						"transform":"translateZ("+z+"px)"
+					})
+					.appendTo(box)
+				}
+				
+				$(".next").click(function(){
+					if(!statr){return false}
+					statr=false
+					var item=$(".item").eq(0)
+					item.css({
+						"transform":"rotateX(180deg)",
+						"opacity":0.1
+					})
+					
+					setTimeout(function(){
+						item.css({
+							"transform":"rotateX(0deg) translateZ("+num*(-50)+"px)",
+							"opacity":1
+						}).appendTo(box)
+					},1000)
+					
+					setTimeout(set,1000)
+				})
+				
+				function set(){
+					$(".item").each(function(index){
+						var z=index*(-50)
+						$(this).css({
+							"transform":"translateZ("+z+"px)",
+						})
+					})
+					statr=true
+				}
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div class="box center">
+			<button type="button" class="prev">prev</button>
+			<button type="button" class="next">next</button>
+		</div>
+	</body>
+</html>

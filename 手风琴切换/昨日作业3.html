@@ -32,8 +32,11 @@ $(function(){
 	 
 	 // 3 复位: slide hide(),left=-w; cur show(),z-index=1; last left=0,z-index=2;
 	 var box=$(".box")
-	var w=box.width()/4;
-	var h=box.height();
+	 var w=box.width()/4;
+	 var h=box.height();
+	 var index=0;
+	 var cur=0;
+	 var start=true;
 	//封装初始化函数 插入进盒子中
 	function init(){
 		for(var i=0;i<4;i++){
@@ -54,18 +57,37 @@ $(function(){
 	}
 	 init()
 	//默认显示第一张图
-	function set(index){
+	function set(index,cur){
 		$(".slide").hide();
-		$(".slide").eq(index).show()
+		$(".slide").eq(index).css({"z-index":2}).show()
+		$(".slide").eq(cur).show().css({"z-index":1,"left":-w+"px"})
+		$(".slide").find(".item").width(w);
 	}
-	set(0);
+	set(0,1);
 	
 	// 点击事件   删除所有按钮样式   切换按钮 增加类名加样式 
 	$(".nav li").click(function(){
+		if (!start) {
+			return false;
+		}
+		start = !start;
 		$(".nav li").removeClass("ac")
 		$(this).addClass("ac")
-		var index=$(this).index()
-		$(".slide").find(".item").animate({"width":0},1000)
+		
+		var cur=$(this).index();
+		
+		if(cur == index){
+			start = true;
+			return false;
+		}
+	
+		set(index,cur)
+		
+		$(".slide").eq(index).find(".item").animate({"width":0},1000)
+		$(".slide").eq(cur).animate({"left":0},1000,function(){
+			start = true;
+		})
+		index=cur;
 	})
 	
 	
