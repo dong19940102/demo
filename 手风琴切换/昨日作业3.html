@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>作业2</title>
+
+<style>
+
+ul{ list-style:none;}
+.box{ width:980px; height:500px; overflow:hidden }
+.center{ position:absolute; left:0; top:0; right:0; bottom:0; margin:auto;}
+.slide{ position:absolute;left:0; top:0; width:100%; height:100%; }
+.item{ position:absolute;top:0; }
+.nav{ position:absolute; left :50px; bottom:30px; width:200px; height:30px; z-index:100;}
+
+.nav li{ float:left;border:1px green solid; width:25px; height:25px; margin-right:15px; border-radius:50%; text-align:center; line-height:25px; cursor:pointer; background-color:green; }
+
+.nav li.ac{ background-color:#fff;}
+
+</style>
+
+<script src="js/jquery-3.1.0.min.js"></script>
+
+<script>
+
+$(function(){
+	
+	 // 思路分析
+	
+	 // 1 隐藏: item　width=0;
+	 // 2 显示:  .slide left=0;
+	 
+	 // 3 复位: slide hide(),left=-w; cur show(),z-index=1; last left=0,z-index=2;
+	 var box=$(".box")
+	var w=box.width()/4;
+	var h=box.height();
+	 for(var i=0;i<4;i++){
+	 	var slide=$("<div class='slide'></div>");
+	 	for(var j=0;j<4;j++){
+	 		$("<div class='item'></div>")
+	 		.width(w)
+	 		.height(h)
+	 		.css({
+	 			"background-image":"url(img/"+i+".jpg)",
+	 			"background-position":-w*j+"px 0px",
+	 		
+	 		})
+	 		.appendTo(slide)
+	 	}
+	 	slide.appendTo(box)
+	 }
+	
+
+});
+
+</script>
+
+</head>
+
+<body>
+
+<div class="box center">
+   
+   <ul class="nav">
+        <li class="ac">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+   </ul> 
+
+</div>
+
+</body>
+</html>
+
+
