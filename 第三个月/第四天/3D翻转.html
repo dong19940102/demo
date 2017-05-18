@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				height: 100%;
+				background: -webkit-linear-gradient(top,#FFF,#cb1919);
+			}
+			.center{
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			.box{
+				width: 980px;
+				height: 500px;
+				transform-style:preserve-3d;
+				perspective: 3000px;
+				
+			}
+			.item{
+				height: 500px;
+				width: 980px;
+				position: absolute;
+				transition: transform 2s;
+			}
+		</style>
+	</head>
+	<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			var Box=$(".box")
+			for(var i=0;i<4;i++){
+				var deg=i*90
+				$("<div class='item'></div>")
+				.css({
+					"background-image":"url(img/"+i+".jpg)",
+					"transform":"rotateX("+deg+"deg) translateZ(250px)"
+				})
+				.appendTo(Box)
+			}
+			var num=0;
+			$("body").click(function(){
+				num++
+				$(".item").each(function(index){
+					var deg=index*90-num*90
+					$(this).css({
+					"transform":"rotateX("+deg+"deg) translateZ(250px)"
+					})
+				})
+			})
+		})
+	</script>
+	<body>
+		<div class="box center"></div>
+	</body>
+</html>
