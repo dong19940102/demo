@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{width: 980px;height: 500px;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;}
+			.pic{width: 196px;height: 100px;float: left;background-image: url(img/17.jpg);position: absolute;}
+		</style>
+		<script src="jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				var Box=$(".box")
+				for(var i=0;i<25;i++){
+					var x=i%5;
+					var y=parseInt(i/5);
+					$("<div class='pic'></div>")
+					.css({
+						"background-position":x*(-196)+"px "+y*(-100)+"px",
+						"left":x*196+"px",
+						"top":y*100+"px"		
+					})
+					.appendTo(Box);
+					
+				};
+				var Pic=$(".pic")
+				Pic.click(function(){
+					
+					hide(0)
+				})
+				
+				function hide(index){
+					Pic.eq(index).delay(50).animate({"opacity":.2},50,function(){
+						if(index<24){
+							hide(index+1)
+						}
+					})
+					
+				}
+				
+			})
+	
+		</script>
+	</head>
+	<body>
+		<div class="box">
+		<!--	<div class="pic" style="background-position: 0 0;"></div>
+			<div class="pic" style="background-position: -196px 0;"></div>
+			<div class="pic" style="background-position: -392px 0;"></div>
+			<div class="pic" style="background-position: -588px 0;"></div>
+			<div class="pic" style="background-position: -784px 0;"></div>
+			<div class="pic" style="background-position: 0 -100px;"></div>
+			<div class="pic" style="background-position: -196px -100px;"></div>
+			<div class="pic" style="background-position: -392px -100px;"></div>
+			<div class="pic" style="background-position: -588px -100px;"></div>
+			<div class="pic" style="background-position: -784px -100px;"></div>
+			<div class="pic" style="background-position: 0 -200px;"></div>
+			<div class="pic" style="background-position: -196px -200px;"></div>
+			<div class="pic" style="background-position: -392px -200px;"></div>
+			<div class="pic" style="background-position: -588px -200px;"></div>
+			<div class="pic" style="background-position: -784px -200px;"></div>
+			<div class="pic" style="background-position: 0 -300px;"></div>
+			<div class="pic" style="background-position: -196px -300px;"></div>
+			<div class="pic" style="background-position: -392px -300px;"></div>
+			<div class="pic" style="background-position: -588px -300px;"></div>
+			<div class="pic" style="background-position: -784px -300px;"></div>
+			<div class="pic" style="background-position: 0 -400px;"></div>
+			<div class="pic" style="background-position: -196px -400px;"></div>
+			<div class="pic" style="background-position: -392px -400px;"></div>
+			<div class="pic" style="background-position: -588px -400px;"></div>
+			<div class="pic" style="background-position: -784px -400px;"></div>-->
+		</div>
+	</body>
+</html>

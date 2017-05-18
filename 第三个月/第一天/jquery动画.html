@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{list-style: none;}
+			li{height: 50px;width: 200px;background-color: red;opacity: .2;margin-top: 10px;}
+		</style>
+		<script src="jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+					var Lis=$("li")
+					function change(index){
+						Lis.eq(index).delay(500).animate({"opacity":1},1000,function(){
+							if(index<Lis.length-1){
+								change(index+1)
+							}
+						})
+					}
+				change(0);
+				
+				
+			})
+
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</body>
+</html>

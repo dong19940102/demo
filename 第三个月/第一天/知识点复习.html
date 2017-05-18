@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.pic{
+	height:500px;
+	width:980px;
+	
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:auto;	
+	
+}
+.bg{
+	height:500px;
+	width:98px;
+	background-image:url(img/20.jpg);
+	float:left;
+	transition:all 2s;
+}
+</style>
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+$(function(){
+	var Pic=$(".pic")	
+	
+	//插入
+	for(var i=0;i<10;i++){
+		
+		
+		$("<div class='bg'></div>")
+		.css({"background-position":i*(-98)+"px"})
+		.appendTo(Pic)	
+	}
+	
+	var Bg=$(".bg");
+	Pic.click(function(){
+		Bg.each(function(index, element) {
+            $(this).animate({"transform":"skew(50deg,20deg)"})	
+        });
+			
+		
+	})
+	
+	
+})
+</script>
+</head>
+
+<body>
+<div class="pic"></div>
+</body>
+</html>

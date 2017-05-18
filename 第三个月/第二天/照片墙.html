@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background-color: black;
+			}
+			.gallery{
+				width: 980px;
+				height: 500px;
+				position: absolute;
+				left: 0;top: 0;
+				right: 0;bottom: 0;
+				margin: auto;
+			}
+			.item{
+				height: 100px;
+				width: 196px;
+				position: absolute;
+				background-color: #fff;
+				transition: transform 2s;
+			}
+			.pic{
+				height: 100%;
+				width: 100%;
+				transition: transform 2s; 
+				
+				
+			}
+		</style>
+		<script src="jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				var gallEry=$(".gallery")
+				inte()
+				
+				function inte(){
+					for(var i=0;i<25;i++){
+						var x=i%5;
+						var y=parseInt(i/5);
+						$("<div class='item'><div class='pic'></div></div>")
+						.css({
+							"left":x*196+"px",
+							"top":y*100+"px"
+						})
+						.appendTo(gallEry)
+					}
+				}
+				
+				
+				var Pic=$(".pic")
+				function showall(){
+					$(".item").each(function(index){
+						var x=index%5;
+						var y=parseInt(index/5);
+						var time=Math.random()*60-30
+						
+						$(this).css({
+							"transform":"translate("+(x-2)*50+"px,"+(y-2)*50+"px) rotate("+time+"deg)"
+						})
+					})
+					
+					Pic.each(function(index){
+						
+						$(this).css({
+							"background-image":"url(img/"+index+".jpg)",
+							"background-size":"cover",
+							"transform":"scale(0.95,0.90)"
+							
+						})
+					})
+				};
+				showall()
+				
+				function showInter(index){
+					$(".item").each(function(){
+						$(this).css({
+							"transform":"translate(0,0) rotate(0deg)"
+						})
+					})
+					
+					$(".pic").each(function(i){
+						var x=i%5;
+						var y=parseInt(i/5);
+						$(this).css({
+							"background-image":"url(img/"+index+".jpg)",
+							"background-size":"auto",
+							"background-position":x*(-196)+"px "+y*(-100)+"px",
+							
+							"transform":"scale(1)"
+						})
+						
+					})
+				}
+				
+				var isShowAll=true;
+				$('.item').click(function(){
+					var index=$(this).index();
+					if(isShowAll){
+						showInter(index);
+					}else{
+						showall();
+					};
+					isShowAll=!isShowAll;
+				})
+				
+			})
+		</script>
+	</head>
+	<body>
+		<div class="gallery"></div>
+	</body>
+</html>

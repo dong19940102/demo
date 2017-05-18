@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{list-style: none;}
+			li{height: 50px;width: 200px;background-color: red;opacity: .2;margin-top: 10px;}
+		</style>
+		<script src="jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+					var Lis=$("li");
+				Lis.hover(
+					function(){
+						$(this).finish().animate({"width":"500px"},1000)
+					},
+					function(){
+						$(this).finish().animate({"width":"200px"},1000)
+					}
+					
+				)
+				
+				
+			})
+
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</body>
+</html>
