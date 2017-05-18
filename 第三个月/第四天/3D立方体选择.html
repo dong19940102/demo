@@ -23,12 +23,8 @@
 				perspective: 3000px;
 				
 			}
-			.item{
-				height: 500px;
-				width: 980px;
-				position: absolute;
-				transition: transform 2s;
-			}
+			
+			.pic{height: 500px;position: absolute;top: 0;}
 		</style>
 	</head>
 	<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
@@ -36,32 +32,43 @@
 		$(function(){
 			var Box=$(".box")
 			for(var i=0;i<4;i++){
-				var deg=i*90
+			
 				$("<div class='item'></div>")
-				.css({
-					"background-image":"url(img/"+i+".jpg)",
-					"transform":"rotateX("+deg+"deg) translateZ(250px)"
-				})
 				.appendTo(Box)
 			}
-			var n=0
-			var num=0;
-			timer=setInterval(function(){
+			
+		var count=5;
+		var w=Box.width()/count;
+		$(".item").each(function(index){
+			var deg=index*90
+			for(var i=0;i<count;i++){
+				var x=i*w;
 				
-				
-				
-				num++;
-				
-				$(".item").each(function(index){
-					n++
-					var deg=index*90-num*90
-					$(this).css({
+				$("<div class='pic'></div>")
+				.width(w)
+				.css({
+					"left":x+"px",
+					"background-image":"url(img/"+index+".jpg)",
+					"background-position":-x+"px 0px",
 					"transform":"rotateX("+deg+"deg) translateZ(250px)"
-					})
 				})
-			
-			},1000)
-			
+				.appendTo(this)
+			}		
+		});
+		 var num=0;
+		 $("body").click(function(){
+		 	num++;
+		 	$(".item").each(function(index){
+		 		var deg=(index*90)-(num*90);
+		 		$(this).find(".pic").each(function(i){
+		 			var  delay=i*0.2;
+		 			$(this).css({
+		 				"transition":"transform 0.5s "+delay+"s",
+		 				"transform":"rotateX("+deg+"deg) translateZ(250px)" 
+		 			})
+		 		})
+		 	})
+		 })
 			
 		})
 	</script>
