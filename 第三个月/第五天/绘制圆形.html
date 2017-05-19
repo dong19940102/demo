@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#cvs{
+				transform-style: preserve-3d;perspective: 500px;
+				transition: all 2s;
+				
+			}
+			#cvs:hover{
+				transform: translate(200px,500px);
+			}
+		</style>
+		<script type="text/javascript">
+		
+		window.onload=function(){
+			var cvs=document.getElementById("cvs");
+			
+			//1创建画布
+			var ctx=cvs.getContext("2d");
+			/*ctx.moveTo(200,200)*/
+			ctx.arc(200,200,100,0,Math.PI*2);
+			ctx.lineWidth="5"
+			ctx.strokeStyle="#008000"
+			ctx.fillStyle="#FF1493"
+			ctx.closePath()
+			ctx.stroke()
+			ctx.fill()
+		}
+	
+		</script>
+	</head>
+	<body>
+		<canvas id="cvs" width="500px" height="500px"></canvas>
+		
+	</body>
+</html>
