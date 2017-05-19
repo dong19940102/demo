@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script type="text/javascript">
+		window.onload=function(){
+			var cvs=document.getElementById("cvs")
+			cvs.innerHTML="jsiudhusduh"
+			var ctx=cvs.getContext("2d")
+			
+			//初始状态
+			ctx.lineWidth="16"
+			var w=cvs.width
+			var h=cvs.height
+			var x=w/2
+			var y=h/2
+			var r=Math.min(w,h)/2-8
+			var target=0.4; //取圆的0.4
+			var progress=0; //半弧滚动的起始终止变化
+			var total=10 // 滑动的时间
+			function draw(){
+				//限制滚动位置 要不然全动 
+				if(progress>10){
+					return false
+				}
+				//起始结束位置
+				var start=Math.PI*3/2*progress/total;
+				var end=Math.PI*2*target*progress/total+start
+				//先绘制一个大圆
+				ctx.beginPath()
+				ctx.strokeStyle="#87ceed"
+				ctx.arc(x,y,r,0,Math.PI*2)
+				ctx.stroke()
+				
+				//再次绘制一个半弧
+				ctx.beginPath()
+				ctx.strokeStyle="#8A2BE2"
+				ctx.arc(x,y,r,start,end)
+				
+				ctx.stroke()
+				
+				progress++
+			}
+			draw()
+			
+			setInterval(draw,50)
+		}
+		
+	</script>
+	<body>
+		<canvas id="cvs" width="500" height="500"></canvas>
+	</body>
+</html>
