@@ -43,30 +43,43 @@
 				}	
 			}
 			
-			//数组来创建对象
-			var star=[
-				new Dot(100,100,"red",50,2,100),
-				new Dot(200,200,"pink",100,2,100),
-				new Dot(300,300,"blue",150,5,100),
-				new Dot(400,400,"green",200,10,100)
-				
-				
-			]
+			//数组来创建对象 来存取圆圆
+			var star=[]		
+			//初始化函数
+			function init(){
+				for(var j=0;j<100;j++){
+				var x=Math.random()*cvs.width; 				//随机坐标
+				var y=Math.random()*cvs.height;				//随机坐标
+				var c=randomColor();						//随机颜色方法
+				var r=Math.random()*20+10; 					//随机半径大小
+				var s=Math.floor(Math.random()*3)+1;        //随机秒数
+				var m=50;
+				var stars=new Dot(x,y,c,r,s,m);             //new 创建一个新的对象 并插入进空数组
+				star.push(stars);
+				}	
+			}
+			init() //调用执行
+		
 			//定时器来控制圆的变化
 			setInterval(function(){
-				ctx.clearRect(0,0,500,500);
-				star[0].draw();
-				star[1].draw();
-				star[2].draw();
-				star[3].draw();
+				ctx.clearRect(0,0,1920,1080);
+				for(var i=0;i<100;i++){
+					
+					star[i].draw() //循环执行数组中函数的方法
+				}
 			},30)
-			
-			
+			//随机颜色函数
+			function randomColor(){
+				var r=Math.floor(Math.random()*255)
+				var g=Math.floor(Math.random()*255)
+				var b=Math.floor(Math.random()*255)
+				return "rgb("+r+","+g+","+b+")"
+			}
 			
 		}
 		
 	</script>
 	<body>
-		<canvas id="cvs" width="1000" height="1000"></canvas>
+		<canvas id="cvs" width="1920" height="1080"></canvas>
 	</body>
 </html>
