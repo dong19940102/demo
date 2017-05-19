@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<script type="text/javascript">
+		
+		window.onload=function(){
+			var cvs=document.getElementById("cvs");
+			
+			//1创建画布
+			var ctx=cvs.getContext("2d");
+			/*ctx.moveTo(200,200)*/
+			
+			var r=100;
+			 
+			var state=true;
+			
+			
+			
+			
+			function draw(){
+				ctx.clearRect(0,0,500,500);
+				ctx.beginPath();
+				ctx.arc(200,200,r,0,Math.PI*2);
+				
+				ctx.fillStyle="#FF1493";
+				ctx.strokeStyle="#008000";
+				ctx.lineWidth="5";
+				ctx.closePath();
+				
+				ctx.stroke();
+				ctx.fill();
+				if(state){
+					r++;
+					if(r>=100){
+						state=!state
+					}
+				}else{
+					r--;
+					if(r<=50){
+						state=!state
+					}
+					
+				}
+				
+			}
+			
+			setInterval(draw,30)
+		}
+	
+		</script>
+	<body>
+		<canvas id="cvs" width="500px" height="500px">HTML5</canvas>
+		
+		
+	</body>
+</html>
